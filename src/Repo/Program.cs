@@ -17,9 +17,9 @@ namespace Repo
         {
             // Use the HttpClient to grab content from a website
             var client = new HttpClient();
-            var templateNames = client.GetAsync(API_LINES,HttpCompletionOption.ResponseContentRead).GetAwaiter().GetResult();
-
-            WriteLine(templateNames);
+            var response = client.GetAsync(API_LINES,HttpCompletionOption.ResponseContentRead).GetAwaiter().GetResult();
+            var templateLines = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            WriteLine(templateLines);
         }
     }
 }
